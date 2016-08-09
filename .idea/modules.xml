@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AppUsageDetector.iml" filepath="$PROJECT_DIR$/AppUsageDetector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-usage-controller/app-usage-controller.iml" filepath="$PROJECT_DIR$/app-usage-controller/app-usage-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-usage-controller/appinformer.iml" filepath="$PROJECT_DIR$/app-usage-controller/appinformer.iml" />
+    </modules>
+  </component>
+</project>
