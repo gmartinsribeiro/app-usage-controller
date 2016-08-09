@@ -1,4 +1,6 @@
 # App Usage Controller
+![alt tag](https://travis-ci.org/gmartinsribeiro/app-usage-controller.svg?branch=master)
+
 Library for app usage and events control.
 Retrieves system info about app usage (most used/recently used) and detects installation events.
 
