@@ -73,8 +73,8 @@ mAppUsage.filter(true, apps, AppUsageManager.Filter.SYSTEM); // Removes system a
 mAppUsage.filter(false, apps, AppUsageManager.Filter.INSTALLED); // Shows ONLY installed apps
 
 String[] fpackages = {"com.aptoide.pt.appusagedetector"};
-uD.filter(false, apps, fpackages); // Shows ONLY packages declared in fpackages
-uD.filter(true, apps, fpackages); // Removes all packages declared in fpackages
+mAppUsage.filter(false, apps, fpackages); // Shows ONLY packages declared in fpackages
+mAppUsage.filter(true, apps, fpackages); // Removes all packages declared in fpackages
         
 ```
 
