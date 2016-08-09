@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aptoide.appinformer">
+    package="com.aptoide.appusage">
 
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
-        <receiver android:name="com.aptoide.appinformer.AppInstallationManager$InstallationReceiver" >
+        <receiver android:name="com.aptoide.appusage.AppInstallationManager$InstallationReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
                 <action android:name="android.intent.action.PACKAGE_ADDED" />

@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'app-usage-controller'
+
+    publishedGroupId = 'com.aptoide.pt'
+    libraryName = 'app-usage-controller'
+    artifact = 'app-usage-controller'
+
+    libraryDescription = 'Retrieves system info about app usage (most used/recently used) and detects installation events.'
+
+    siteUrl = 'https://github.com/gmartinsribeiro/app-usage-controller'
+    gitUrl = 'https://github.com/gmartinsribeiro/app-usage-controller.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'franciscoaleixo'
+    developerName = 'Francisco Aleixo'
+    developerEmail = 'francisco.aleixo16@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
@@ -23,3 +47,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

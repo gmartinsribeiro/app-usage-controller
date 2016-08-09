@@ -17,9 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.aptoide.appinformer.AppInstallationListener;
-import com.aptoide.appinformer.AppInstallationManager;
-import com.aptoide.appinformer.AppUsageManager;
+import com.aptoide.appusage.AppInstallationListener;
+import com.aptoide.appusage.AppInstallationManager;
+import com.aptoide.appusage.AppUsageManager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aptoide.appinformer.AppUsageInfo;
+import com.aptoide.appusage.AppUsageInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

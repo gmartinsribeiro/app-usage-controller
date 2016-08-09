@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.aptoide.appinformer.AppUsageInfo;
-import com.aptoide.appinformer.AppUsageManager;
+import com.aptoide.appusage.AppUsageInfo;
+import com.aptoide.appusage.AppUsageManager;
 
 import java.util.List;
 

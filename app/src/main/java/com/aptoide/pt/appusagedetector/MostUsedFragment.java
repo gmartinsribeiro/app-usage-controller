@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.aptoide.appinformer.AppUsageInfo;
-import com.aptoide.appinformer.AppUsageManager;
+import com.aptoide.appusage.AppUsageInfo;
+import com.aptoide.appusage.AppUsageManager;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ public class MostUsedFragment extends Fragment {
             List<AppUsageInfo> apps = uD.getMostUsedApps();
             // Create the adapter to convert the array to views
             AppUsageInfoArrayAdapter adapter = new AppUsageInfoArrayAdapter(getActivity().getApplicationContext(), R.layout.listitem, apps);
-            adapter.setFragmentUser(AppUsageInfoArrayAdapter.FragmentType.LASTUSED);
+            adapter.setFragmentUser(AppUsageInfoArrayAdapter.FragmentType.MOSTUSED);
             // Attach the adapter to a ListView
             listView.setAdapter(adapter);
         } catch (SecurityException e){
