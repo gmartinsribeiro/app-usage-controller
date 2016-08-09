@@ -62,6 +62,23 @@ public void showSettingsDialog(){
     dialog.show();
 }
 ```
+### Filters
+You can also filter lists of AppUsageInfo based on several parameters for easier usage. Examples below.
+
+```java
+
+List<AppUsageInfo> apps = mAppUsage.getMostUsedApps();
+mAppUsage.filter(false, apps, AppUsageManager.Filter.SYSTEM); // Shows ONLY system apps
+mAppUsage.filter(true, apps, AppUsageManager.Filter.SYSTEM); // Removes system apps
+mAppUsage.filter(false, apps, AppUsageManager.Filter.INSTALLED); // Shows ONLY installed apps
+
+String[] fpackages = {"com.aptoide.pt.appusagedetector"};
+uD.filter(false, apps, fpackages); // Shows ONLY packages declared in fpackages
+uD.filter(true, apps, fpackages); // Removes all packages declared in fpackages
+        
+```
+
+Note: The categorization of system/installed apps is based on launcher presence, so it might not be 100% accurate.
 ### Installation/Uninstallation Listeners
 To use the Installation/Uninstallation listeners, you simply need to implement AppInstalationListener and set it on AppInstallationManager, as shown below.
 

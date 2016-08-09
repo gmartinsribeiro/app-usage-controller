@@ -19,8 +19,9 @@ import java.util.List;
 public class AppUsageManager implements AppUsageStats{
 
     private UsageStatsManager mUsageStatsManager;
-
     private Context context;
+
+    public enum Filter {SYSTEM, INSTALLED};
 
     public AppUsageManager(Context context){
         this.context = context;
@@ -43,30 +44,25 @@ public class AppUsageManager implements AppUsageStats{
 
     private List<AppUsageInfo> getUsageStats() throws SecurityException{
         //checkPermissions();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Calendar startCal = Calendar.getInstance();
-            startCal.set(Calendar.YEAR, 1970);
-            Calendar endCal = Calendar.getInstance();
-            long startTime = startCal.getTimeInMillis();
-            long endTime = endCal.getTimeInMillis();
+        Calendar startCal = Calendar.getInstance();
+        startCal.set(Calendar.YEAR, 1970);
+        Calendar endCal = Calendar.getInstance();
+        long startTime = startCal.getTimeInMillis();
+        long endTime = endCal.getTimeInMillis();
 
-            List<UsageStats> queryUsageStats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_YEARLY, startTime, endTime);
-            if(queryUsageStats.size() == 0){
-                throw new SecurityException();
-            }
-            List<AppUsageInfo> apps = new ArrayList<>();
-            for (UsageStats stats : queryUsageStats) {
-                Calendar lastTimeCalendar = Calendar.getInstance();
-                lastTimeCalendar.setTimeInMillis(stats.getLastTimeUsed());
-                String appName = getPackageAppName(stats.getPackageName());
+        List<UsageStats> queryUsageStats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_YEARLY, startTime, endTime);
+        if(queryUsageStats.size() == 0){
+            throw new SecurityException();
+        }
+        List<AppUsageInfo> apps = new ArrayList<>();
+        for (UsageStats stats : queryUsageStats) {
+            Calendar lastTimeCalendar = Calendar.getInstance();
+            lastTimeCalendar.setTimeInMillis(stats.getLastTimeUsed());
+            String appName = getPackageAppName(stats.getPackageName());
 
-                apps.add(new AppUsageInfo(stats.getPackageName(), appName, stats.getTotalTimeInForeground(), lastTimeCalendar));
-            }
-            return apps;
+            apps.add(new AppUsageInfo(stats.getPackageName(), appName, stats.getTotalTimeInForeground(), lastTimeCalendar));
         }
-        else{
-            return null;
-        }
+        return apps;
     }
 
 
@@ -98,5 +94,73 @@ public class AppUsageManager implements AppUsageStats{
         return (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
     }
 
+    /**
+     * Filters app list based on a specific filter.
+     * The filter can act as an exclusion filter or as an exclusive filter (e.g. ignore system apps or only show system apps).
+     * @param filterOut - true if filter excludes apps or false if filter acts as an exclusive.
+     * @return List of apps filtered.
+     */
+
+    public void filter (boolean filterOut, List<AppUsageInfo> apps, Filter filter){
+        PackageManager pm = context.getPackageManager();
+
+        for(int i = 0; i<apps.size(); i++){
+            AppUsageInfo app = apps.get(i);
+            String packageName = app.getPackageName();
+
+            if(filter == Filter.INSTALLED){
+                if((pm.getLaunchIntentForPackage(packageName) != null) && filterOut){
+                    apps.remove(i);
+                    i--;
+                }
+                else if(!(pm.getLaunchIntentForPackage(packageName) != null) && !filterOut){
+                    apps.remove(i);
+                    i--;
+                }
+            }
+            else if(filter == Filter.SYSTEM){
+                if(!(pm.getLaunchIntentForPackage(packageName) != null) && filterOut){
+                    apps.remove(i);
+                    i--;
+                }
+                else if((pm.getLaunchIntentForPackage(packageName) != null) && !filterOut){
+                    apps.remove(i);
+                    i--;
+                }
+            }
+        }
+    }
+
+    /**
+     * Filters app list based on a list of package names.
+     * The filter can act as an exclusion filter or as an exclusive filter (e.g. ignore system apps or only show system apps).
+     * @param filterOut - true if filter excludes apps or false if filter acts as an exclusive.
+     * @return List of apps filtered.
+     */
+
+    public void filter (boolean filterOut, List<AppUsageInfo> apps, String[] packageNames){
+        for(int i = 0; i<apps.size(); i++){
+            AppUsageInfo app = apps.get(i);
+            String packageName = app.getPackageName();
+
+            if(stringArrayContains(packageName, packageNames) && filterOut){
+                apps.remove(i);
+                i--;
+            }
+            else if(!stringArrayContains(packageName, packageNames) && !filterOut){
+                apps.remove(i);
+                i--;
+            }
+        }
+    }
+
+    private static boolean stringArrayContains(String string, String[] strings){
+        for(String s : strings){
+            if(s.equals(string)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
