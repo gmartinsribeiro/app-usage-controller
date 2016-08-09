@@ -98,7 +98,6 @@ public class AppUsageManager implements AppUsageStats{
      * Filters app list based on a specific filter.
      * The filter can act as an exclusion filter or as an exclusive filter (e.g. ignore system apps or only show system apps).
      * @param filterOut - true if filter excludes apps or false if filter acts as an exclusive.
-     * @return List of apps filtered.
      */
 
     public void filter (boolean filterOut, List<AppUsageInfo> apps, Filter filter){
@@ -135,7 +134,6 @@ public class AppUsageManager implements AppUsageStats{
      * Filters app list based on a list of package names.
      * The filter can act as an exclusion filter or as an exclusive filter (e.g. ignore system apps or only show system apps).
      * @param filterOut - true if filter excludes apps or false if filter acts as an exclusive.
-     * @return List of apps filtered.
      */
 
     public void filter (boolean filterOut, List<AppUsageInfo> apps, String[] packageNames){
