@@ -18,7 +18,7 @@ Apart from this section, a complete example can be downloaded from this repo.
 
 ### App Usage
 To retrieve information about the apps usage you need to use AppUsageManager class, which implements AppUsageStats.
-You have two methods that you can currently use: getMostUsedApps() and getRecentlyUsedApps(). Both return a list of AppUsageInfo ordered by the most used apps and the most recently used apps respectively.
+You have two methods that you can currently use: getMostUsedApps() and getRecentlyUsedApps(). Both return a list of AppUsageInfo ordered by the most used apps and the most recently used apps respectively (descending!).
 
 Note that you need to catch SecurityException in case the app has no usage permissions (you can show a settings dialog, for example).
 
