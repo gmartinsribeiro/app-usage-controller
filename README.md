@@ -106,3 +106,18 @@ public class MainActivity extends AppCompatActivity implements AppInstallationLi
 }
 
 ```
+
+## API Level and Support
+This library minimum SDK level is 21 (Lollipop). However your minimum SDK level on your project may be lower. To still include this libary you can add the following to your AndroidManifest.xml.
+
+```xml
+<uses-sdk tools:overrideLibrary="com.aptoide.appusage"/>
+```
+
+And do not forget to check API version on code.
+
+```java
+if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+    // Use library here
+}
+```
