@@ -65,7 +65,14 @@ public class AppUsageInfo{
 
         @Override
         public int compare(AppUsageInfo t1, AppUsageInfo t2) {
-            return (int) (t2.getLastUsedTime().getTimeInMillis() - t1.getLastUsedTime().getTimeInMillis());
+            long c = t2.getLastUsedTime().getTimeInMillis() - t1.getLastUsedTime().getTimeInMillis();
+            if(c > 0 ){
+                return 1;
+            }
+            else if(c < 0 ){
+                return -1;
+            }
+            return 0;
         }
     }
 }
