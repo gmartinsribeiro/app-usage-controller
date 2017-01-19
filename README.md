@@ -9,7 +9,7 @@ You can easily install this module using JCenter, by adding the following depend
 
 ```java
 dependencies {
- compile 'com.aptoide.pt:app-usage-controller:1.0.3'
+ compile 'com.aptoide.pt:app-usage-controller:1.0.4'
  //...
 }
 ```
